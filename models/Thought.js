@@ -1,32 +1,5 @@
 const { Schema, model } = require('mongoose');
-
-const reactionSchema = new Schema(
-  {
-    reactionId: {
-      type: Schema.Types.ObjectId,
-      default: () => new Types.ObjectId(),
-    },
-    reactionBody: {
-      type: String,
-      required: true,
-    },
-    username: {
-      type: String,
-      required: true,
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-      //getter method to format the timestamp on query
-    },
-  },
-  {
-    toJSON: {
-      getters: true,
-    },
-    id: false
-  }
-)
+const reactionSchema = require('./Reaction');
 
 const thoughtSchema = new Schema( 
   {
@@ -65,4 +38,4 @@ thoughtSchema
 
 const Thought = model('thought', thoughtSchema);
 
-modeule.exports = Thought;
+module.exports = Thought;
