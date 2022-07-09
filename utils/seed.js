@@ -10,10 +10,10 @@ connection.once('open', async () => {
     const users = []
     const allThoughts = []
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 10; i++) {
         let username = getRandomName()
         let email = `${username.split(' ')[0]}@${username.split(' ')[1]}.com`
-        const thoughts = []
+        let thoughts = []
         for (let i = 0; i < 2; i++) {
             let thought = {
                 thoughtText: getRandomThought(),
@@ -22,11 +22,18 @@ connection.once('open', async () => {
             thoughts.push(thought)
             allThoughts.push(thought)
         }
+        let friends = [];
+        for (let i = 0; i < 2; i++) {
+            let friend = getRandomName();
+            friends.push(friend)
+          }
 
         users.push({
             username,
             email,
-        })
+            thoughts,
+            friends
+        });
     }
     console.log(users)
     await User.collection.insertMany(users);
